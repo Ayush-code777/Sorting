@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+void printArray(int *A,int n){
+    for (int i=0; i<n; i++){
+        printf("%d ",A[i]);
+    }
+    printf("\n");
+}
+
+void insertionSort(int *A, int n){
+    int min,temp;
+    for(int i=0;i<n-1;i++){///----- n-1 BECAUSE STARTING FROM 0.
+        min=A[i];
+        int x;
+        for(int j=i+1;j<=n-1;j++){//----------OBV IT WILL GO TILL n-1 WHEN I AM INCREASING THE J IN THE STARTING WRT i
+            if(A[j]<min){
+                min=A[j];
+                printf("The value at j is :%d\n",j);
+                x=j;
+                
+                
+            }
+            else{
+                continue;
+            }
+            temp=A[i];
+            A[i]=A[x];
+            A[x]=temp;
+
+        }
+        
+        
+
+    }
+
+}
+
+
+int main(int argc, char const *argv[])
+{
+    int arr[]={3,45,3,66,87,99,76,43,55,1,2,3};
+    int n=12;
+    printArray(arr,n);
+    insertionSort(arr,n);
+    printArray(arr,n);
+    
+    return 0;
+}
