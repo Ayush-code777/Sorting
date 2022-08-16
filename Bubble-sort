@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void bubblesort(int *A,int n){
+    int temp;
+    int isSorted=0;// -----------------To keep a check that if array is sorted .
+    for(int i=0;i<n-1;i++){
+        isSorted=1;
+        printf("Working on pass number :%d\n",i+1);
+
+        for(int j=0;j<n-1-i;j++){
+            if(A[j]>A[j+1]){
+                temp=A[j];
+                A[j]=A[j+1];
+                A[j+1]=temp;
+                isSorted=0;
+            }
+        }
+        if(isSorted){    //-----------If it is 1, it will return the whole thing as it is
+            return;
+        }
+    }
+
+}
+
+//----Made bubble sort adaptive using isSorted variable to keep the sorting end whenevr the next left array is sorted.
+
+void printArray(int *a,int n){
+    for(int i=0;i<n;i++){
+        printf("%d ",a[i]);
+    }
+}
+
+
+int main(int argc, char const *argv[])
+{
+    //int arr[]={65,23,54,87,97,21};
+    int arr[]={2,1,3,4,5,6};
+    int n=6;
+    printArray(arr,n);
+    printf("After sorting\n");
+    bubblesort(arr,n);
+    printArray(arr,n);
+    
+    /* code */
+    return 0;
+}
