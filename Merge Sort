@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int count=0;
+
+void printArray(int A[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", A[i]);
+    }
+    printf("\n");
+}
+
+void merge(int A[], int low, int mid, int high)
+{
+    int i, j, k;
+    int B[100];
+    i = low;
+    j = mid + 1;
+    k = low;
+    while (i <= mid && j <= high)
+    {
+        if (A[i] < A[j])
+        {
+            B[k] = A[i];
+            i++;
+            k++;
+        }
+        else
+        {
+            B[k] = A[j];
+            j++;
+            k++;
+        }
+    }
+    while (i <= mid)
+    {
+        B[k] = A[i];
+        i++;
+        k++;
+    }
+    while (j <= high)
+    {
+        B[k] = A[j];
+        j++;
+        k++;
+    }
+    for (int i = low; i <= high; i++)
+    {
+        A[i] = B[i];
+    }
+}
+
+void mergeSort(int A[], int low, int high)
+{
+    int mid;
+    
+
+    if (low < high)///-----FOR THERE TO BE MINIMUM OF 2 NUMBERS IN THE ARRAY.
+    {
+        mid = (low + high) / 2;  //-----THIS DEPENDS ON YOU ON HOW TO KEEP THE ARRAY FOR EVEN NUMBER OF ELEMENTS AND ODD NUMBER OF ELEMENTS
+        mergeSort(A, low, mid);
+        mergeSort(A, mid + 1, high);
+        count++;
+        
+
+        merge(A, low, mid, high);
+    }
+    printf("the %d\n",count);
+}
+int main(int argc, char const *argv[])
+{
+    //int arr[] = {9, 3, 18, 34, 56, 72, 1, 4, 91};
+    int arr[]={1,1,1,2,2};
+    int n = 5;
+    printArray(arr, n);
+    mergeSort(arr, 0, 8);
+    printArray(arr, n);
+    return 0;
+}
